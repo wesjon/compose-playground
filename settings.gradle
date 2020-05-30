@@ -1,2 +1,3 @@
+include ':compose-view'
 include ':app'
 rootProject.name = "Compose Playground"
