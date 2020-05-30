@@ -1,4 +1,4 @@
-package br.com.wesjon.compose_view
+package br.com.wesjon.compose_view.screen
 
 import androidx.compose.Composable
 import androidx.ui.core.Modifier
@@ -14,6 +14,8 @@ import androidx.ui.material.Button
 import androidx.ui.material.MaterialTheme
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
+import br.com.wesjon.compose_view.domain.Example
+import br.com.wesjon.compose_view.domain.examplesList
 
 @Preview
 @Composable
@@ -36,7 +38,7 @@ fun HomeScreen() {
 @Composable
 fun ExamplesList() {
     AdapterList(
-        data = listOf("A", "B", "C"),
+        data = examplesList,
         modifier = Modifier.padding(0.dp, 16.dp, 0.dp, 0.dp)
     ) {
         ExampleListItem(it)
@@ -44,12 +46,13 @@ fun ExamplesList() {
 }
 
 @Composable
-fun ExampleListItem(exampleName: String) {
+fun ExampleListItem(example: Example) {
     Button(
         onClick = {},
         shape = MaterialTheme.shapes.medium,
-        modifier = Modifier.fillMaxSize() + Modifier.padding(16.dp, 0.dp, 8.dp, 16.dp)
+        modifier = Modifier.fillMaxSize() + Modifier.padding(16.dp, 0.dp, 8.dp, 16.dp),
+        enabled = example.isImplemented
     ) {
-        Text(text = exampleName)
+        Text(text = example.name)
     }
 }
