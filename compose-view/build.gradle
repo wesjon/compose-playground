@@ -1,20 +1,10 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
 }
 
 android {
     compileSdkVersion 29
-
-    defaultConfig {
-        applicationId "br.com.wesjon.composeplayground"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
 
     buildTypes {
         release {
@@ -29,6 +19,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
     buildFeatures {
         compose true
     }
@@ -40,16 +31,18 @@ android {
 }
 
 dependencies {
-    implementation project(":compose-view")
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation("androidx.ui:ui-core:$compose_version")
-
-    implementation 'com.google.android.material:material:1.1.0'
+    implementation "androidx.compose:compose-runtime:$compose_version"
+    implementation "androidx.ui:ui-core:$compose_version"
+    implementation "androidx.ui:ui-layout:$compose_version"
+    implementation "androidx.ui:ui-material:$compose_version"
+    implementation "androidx.ui:ui-material-icons-extended:$compose_version"
+    implementation "androidx.ui:ui-foundation:$compose_version"
+    implementation "androidx.ui:ui-animation:$compose_version"
+    implementation "androidx.ui:ui-tooling:$compose_version"
 
     testImplementation 'junit:junit:4.13'
-
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
