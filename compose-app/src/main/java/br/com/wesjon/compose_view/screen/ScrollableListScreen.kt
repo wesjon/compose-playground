@@ -23,11 +23,11 @@ fun ScrollableListScreen() {
         data = (0..20).toList(),
         modifier = Modifier.padding(horizontal = 16.dp)
     ) { index ->
+        // Here is the equivalent to "onCreateViewHolder", build your listItem here
+
         if (index == 0) {
             Spacer(modifier = Modifier.height(8.dp))
         }
-
-        // Here is the equivalent to "onCreateViewHolder", build your listItem here
 
         // The equivalent of multiple ViewTypes can be expressed as conditions here
         if (index.isOdd()) {
