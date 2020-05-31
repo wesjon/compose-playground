@@ -2,11 +2,9 @@ package br.com.wesjon.compose_view
 
 import androidx.compose.Composable
 import androidx.ui.foundation.Text
-import androidx.ui.material.IconButton
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.Scaffold
 import androidx.ui.material.TopAppBar
-import androidx.ui.material.icons.Icons
 import br.com.wesjon.compose_view.screen.HomeScreen
 import br.com.wesjon.compose_view.screen.LinearLayoutScreen
 import br.com.wesjon.compose_view.screen.ScrollableListScreen
