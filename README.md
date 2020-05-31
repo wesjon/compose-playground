@@ -5,6 +5,13 @@ Sample project to try out Jetpack Compose. The idea is to explore how some of th
 
 - Requires Android Studio 4.1 Canary 9+
 
+# Third-party libraries
+
+![Screenshot](docs/homescreen-screenshot.png)
+
+
+- **Compose-router**: Used for backstack and navigation https://github.com/zsoltk/compose-router
+
 # App preview and structure
 
 **Module `:app`**: Mainly for creating an activity that will host the ComposeApp
