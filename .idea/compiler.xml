@@ -3,7 +3,7 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
       <module name="Compose_Playground.app" target="1.8" />
-      <module name="Compose_Playground.compose-view" target="1.8" />
+      <module name="Compose_Playground.compose-app" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
