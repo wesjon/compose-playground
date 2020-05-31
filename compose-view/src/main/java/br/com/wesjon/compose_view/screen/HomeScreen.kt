@@ -11,14 +11,12 @@ import androidx.ui.layout.padding
 import androidx.ui.material.Button
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.TopAppBar
-import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
 import br.com.wesjon.compose_view.domain.Example
 import br.com.wesjon.compose_view.domain.examplesList
 
-@Preview
 @Composable
-fun HomeScreen() {
+fun HomeScreen(onExampleClicked: (Example) -> Unit) {
     MaterialTheme {
         Box(backgroundColor = MaterialTheme.colors.background) {
             Column {
@@ -26,26 +24,29 @@ fun HomeScreen() {
                     title = { Text("Jetpack Compose Examples") }
                 )
 
-                ExamplesList()
+                ExamplesList(onExampleClicked)
             }
         }
     }
 }
 
 @Composable
-fun ExamplesList() {
+fun ExamplesList(onExampleClicked: (Example) -> Unit) {
     AdapterList(
         data = examplesList,
         modifier = Modifier.padding(0.dp, 16.dp, 0.dp, 0.dp)
     ) {
-        ExampleListItem(it)
+        ExampleListItem(it, onExampleClicked)
     }
 }
 
 @Composable
-fun ExampleListItem(example: Example) {
+fun ExampleListItem(
+    example: Example,
+    onExampleClicked: (Example) -> Unit
+) {
     Button(
-        onClick = {  },
+        onClick = { onExampleClicked.invoke(example) },
         shape = MaterialTheme.shapes.medium,
         modifier = Modifier.fillMaxSize() + Modifier.padding(16.dp, 0.dp, 8.dp, 16.dp),
         enabled = example.isImplemented
