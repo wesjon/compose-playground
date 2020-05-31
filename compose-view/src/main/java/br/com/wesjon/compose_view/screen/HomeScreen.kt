@@ -5,13 +5,12 @@ import androidx.ui.core.Modifier
 import androidx.ui.foundation.AdapterList
 import androidx.ui.foundation.Box
 import androidx.ui.foundation.Text
-import androidx.ui.graphics.Color
 import androidx.ui.layout.Column
 import androidx.ui.layout.fillMaxSize
-import androidx.ui.layout.fillMaxWidth
 import androidx.ui.layout.padding
 import androidx.ui.material.Button
 import androidx.ui.material.MaterialTheme
+import androidx.ui.material.TopAppBar
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
 import br.com.wesjon.compose_view.domain.Example
@@ -21,12 +20,10 @@ import br.com.wesjon.compose_view.domain.examplesList
 @Composable
 fun HomeScreen() {
     MaterialTheme {
-        Box(backgroundColor = Color.White) {
+        Box(backgroundColor = MaterialTheme.colors.background) {
             Column {
-                Text(
-                    "Jetpack Compose Examples",
-                    style = MaterialTheme.typography.h4,
-                    modifier = Modifier.fillMaxWidth() + Modifier.padding(16.dp)
+                TopAppBar(
+                    title = { Text("Jetpack Compose Examples") }
                 )
 
                 ExamplesList()
@@ -48,7 +45,7 @@ fun ExamplesList() {
 @Composable
 fun ExampleListItem(example: Example) {
     Button(
-        onClick = {},
+        onClick = {  },
         shape = MaterialTheme.shapes.medium,
         modifier = Modifier.fillMaxSize() + Modifier.padding(16.dp, 0.dp, 8.dp, 16.dp),
         enabled = example.isImplemented
