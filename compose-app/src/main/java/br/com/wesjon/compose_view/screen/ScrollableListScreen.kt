@@ -2,8 +2,8 @@ package br.com.wesjon.compose_view.screen
 
 import androidx.compose.Composable
 import androidx.ui.core.Modifier
-import androidx.ui.foundation.AdapterList
 import androidx.ui.foundation.Box
+import androidx.ui.foundation.lazy.LazyColumnItems
 import androidx.ui.graphics.Color
 import androidx.ui.layout.Spacer
 import androidx.ui.layout.fillMaxWidth
@@ -19,8 +19,8 @@ private val coolColors = listOf(
 
 @Composable
 fun ScrollableListScreen() {
-    AdapterList(
-        data = (0..20).toList(),
+    LazyColumnItems(
+        items = (0..20).toList(),
         modifier = Modifier.padding(horizontal = 16.dp)
     ) { index ->
         // Here is the equivalent to "onCreateViewHolder", build your listItem here

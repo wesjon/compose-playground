@@ -32,7 +32,7 @@ fun ScaffoldScreen(
     bodyContent: @Composable() () -> Unit
 ) {
     Scaffold(
-        topAppBar = {
+        topBar = {
             TopAppBar(title = { Text(title) })
         },
         bodyContent = { MaterialTheme(content = bodyContent) }
