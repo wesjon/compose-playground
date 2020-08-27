@@ -1,16 +1,17 @@
 package br.com.wesjon.compose_view.screen
 
-import androidx.compose.Composable
-import androidx.ui.core.Alignment
-import androidx.ui.core.Modifier
-import androidx.ui.foundation.Box
-import androidx.ui.foundation.ContentGravity
-import androidx.ui.foundation.Text
-import androidx.ui.graphics.Color
-import androidx.ui.layout.*
-import androidx.ui.layout.RowScope.weight
+
+import androidx.compose.foundation.Box
+import androidx.compose.foundation.ContentGravity
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.ColumnScope.weight
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import androidx.ui.unit.dp
 import br.com.wesjon.compose_view.view.ExampleWithTitle
 
 private val boxSize = 40.dp
@@ -47,7 +48,6 @@ fun VerticalExample() {
     }
 }
 
-@Preview
 @Composable
 fun HorizontalExample() {
     Row {

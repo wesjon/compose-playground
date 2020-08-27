@@ -1,15 +1,15 @@
 package br.com.wesjon.compose_view.screen
 
-import androidx.compose.Composable
-import androidx.ui.core.Modifier
-import androidx.ui.foundation.AdapterList
-import androidx.ui.foundation.Box
-import androidx.ui.foundation.Text
-import androidx.ui.layout.fillMaxSize
-import androidx.ui.layout.padding
-import androidx.ui.material.Button
-import androidx.ui.material.MaterialTheme
-import androidx.ui.unit.dp
+import androidx.compose.foundation.Box
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import br.com.wesjon.compose_view.model.Example
 import br.com.wesjon.compose_view.model.examplesList
 
@@ -24,12 +24,11 @@ fun HomeScreen(onExampleClicked: (Example) -> Unit) {
 
 @Composable
 fun ExamplesList(onExampleClicked: (Example) -> Unit) {
-    AdapterList(
-        data = examplesList,
-        modifier = Modifier.padding(0.dp, 16.dp, 0.dp, 0.dp)
-    ) {
-        ExampleListItem(it, onExampleClicked)
-    }
+    LazyColumnFor(items = examplesList,
+        modifier = Modifier.padding(0.dp, 16.dp, 0.dp, 0.dp),
+        itemContent = {
+            ExampleListItem(it, onExampleClicked)
+        })
 }
 
 @Composable
