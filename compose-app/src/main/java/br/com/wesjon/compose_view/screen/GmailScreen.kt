@@ -6,6 +6,7 @@ import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Star
@@ -57,12 +58,16 @@ fun EmailItem(email: Email) {
             Text(email.time)
 
             val icon = if (email.isStared) {
-                Icons.Filled.Star
+                Icons.Default.Star
             } else {
                 Icons.Outlined.Star
             }
 
-            Icon(icon, Modifier.gravity(Alignment.CenterHorizontally))
+            IconButton(
+                icon = { Icon(icon) },
+                modifier = Modifier.gravity(Alignment.CenterHorizontally),
+                onClick = {}
+            )
         }
     }
 }

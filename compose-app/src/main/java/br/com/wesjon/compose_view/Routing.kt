@@ -5,4 +5,5 @@ sealed class Routing(val title: String) {
     object ExampleLinearLayoutLike : Routing("LinearLayout")
     object ExampleScrollableLists : Routing("ScrollableLists")
     object GmailLikeLayout : Routing("GmailLikeLayout")
+    object NuBankUI : Routing("Nubank UI")
 }
