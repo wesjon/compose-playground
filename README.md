@@ -3,7 +3,7 @@ Sample project to try out Jetpack Compose. The idea is to explore how some of th
 
 # Environment requirements
 
-- Requires Android Studio 4.1 Canary 9+
+- Requires Android Studio 4.2 Canary 8+
 
 # Third-party libraries
 
