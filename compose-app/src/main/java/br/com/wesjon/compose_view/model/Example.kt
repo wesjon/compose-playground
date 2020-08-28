@@ -11,5 +11,6 @@ data class Example(
 val examplesList = listOf(
     Example("LinearLayout like layouts", Routing.ExampleLinearLayoutLike, true),
     Example("Scrollable lists", Routing.ExampleScrollableLists, true),
-    Example("Gmail like list", isImplemented = false)
+    Example("Gmail like list", Routing.GmailLikeLayout, true),
+    Example("Nubank UI", Routing.NuBankUI, false)
 )
