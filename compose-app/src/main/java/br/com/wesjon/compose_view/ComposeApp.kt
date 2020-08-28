@@ -6,8 +6,11 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.ui.tooling.preview.Preview
+import br.com.wesjon.compose_view.screen.GmailScreen
 import br.com.wesjon.compose_view.screen.HomeScreen
 import br.com.wesjon.compose_view.screen.LinearLayoutScreen
 import br.com.wesjon.compose_view.screen.ScrollableListScreen
@@ -15,12 +18,13 @@ import br.com.wesjon.compose_view.screen.ScrollableListScreen
 @Preview
 @Composable
 fun ComposeApp() {
-    var currentRoute: Routing = remember { Routing.HomeScreen }
-    ScaffoldScreen(title = currentRoute.title) {
-        when (currentRoute) {
-            is Routing.HomeScreen -> HomeScreen { currentRoute = it.route }
-            is Routing.ExampleLinearLayoutLike -> LinearLayoutScreen()
-            is Routing.ExampleScrollableLists -> ScrollableListScreen()
+    val currentRoute: MutableState<Routing> = remember { mutableStateOf(Routing.HomeScreen) }
+    ScaffoldScreen(title = currentRoute.value.title) {
+        when (currentRoute.value) {
+            Routing.HomeScreen -> HomeScreen { currentRoute.value = it.route }
+            Routing.ExampleLinearLayoutLike -> LinearLayoutScreen()
+            Routing.ExampleScrollableLists -> ScrollableListScreen()
+            Routing.GmailLikeLayout -> GmailScreen()
         }
     }
 }
@@ -32,7 +36,9 @@ fun ScaffoldScreen(
 ) {
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text(title) })
+            TopAppBar(
+                title = { Text(title) },
+            )
         },
         bodyContent = { MaterialTheme(content = bodyContent) }
     )
