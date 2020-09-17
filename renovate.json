@@ -1,5 +1,18 @@
 {
   "extends": [
     "config:base"
+  ],
+  "labels": [
+    "renovate"
+  ],
+  "semanticCommits": true,
+  "packageRules": [
+    {
+      "updateTypes": [
+        "minor",
+        "patch"
+      ],
+      "automerge": true
+    }
   ]
 }
