@@ -1,10 +1,6 @@
 package br.com.wesjon.compose_view.screen
 
-import androidx.compose.foundation.Box
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -30,28 +26,28 @@ fun ScrollableListScreen() {
             }
 
             // The equivalent of multiple ViewTypes can be expressed as conditions here
-            if (index.isOdd()) {
-                ListItemTypeA()
-            } else {
-                ListItemTypeB()
-            }
+//            if (index.isOdd()) {
+//                ListItemTypeA()
+//            } else {
+//                ListItemTypeB()
+//            }
 
             Spacer(modifier = Modifier.height(8.dp))
         })
 }
 
-@Composable
-fun ListItemTypeA() {
-    Box(
-        modifier = Modifier.fillMaxWidth() + Modifier.height(boxSize),
-        backgroundColor = coolColors.random()
-    )
-}
-
-@Composable
-fun ListItemTypeB() {
-    Box(
-        modifier = Modifier.fillMaxWidth() + Modifier.height(boxSize * 2),
-        backgroundColor = coolColors.random()
-    )
-}
+//@Composable
+//fun ListItemTypeA() {
+//    Box(
+//        modifier = Modifier.fillMaxWidth() + Modifier.height(boxSize),
+//        backgroundColor = coolColors.random()
+//    )
+//}
+//
+//@Composable
+//fun ListItemTypeB() {
+//    Box(
+//        modifier = Modifier.fillMaxWidth() + Modifier.height(boxSize * 2),
+//        backgroundColor = coolColors.random()
+//    )
+//}

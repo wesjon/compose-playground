@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 import br.com.wesjon.compose_view.screen.GmailScreen
 import br.com.wesjon.compose_view.screen.HomeScreen
 import br.com.wesjon.compose_view.screen.LinearLayoutScreen

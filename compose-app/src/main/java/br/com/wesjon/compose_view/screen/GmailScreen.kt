@@ -1,8 +1,8 @@
 package br.com.wesjon.compose_view.screen
 
-import androidx.compose.foundation.Box
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.foundation.shape.CircleShape
@@ -16,9 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.ui.tooling.preview.Preview
 
 data class Email(
     val name: String,
@@ -43,7 +43,7 @@ fun GmailScreen() {
 @Composable
 fun EmailItem(email: Email) {
     Row(Modifier.padding(16.dp)) {
-        ContactImage(email.name)
+//        ContactImage(email.name)
 
         Column(
             Modifier
@@ -64,31 +64,31 @@ fun EmailItem(email: Email) {
             }
 
             IconButton(
-                icon = { Icon(icon) },
-                modifier = Modifier.gravity(Alignment.CenterHorizontally),
+                content = { Icon(icon) },
+                modifier = Modifier.align(Alignment.CenterHorizontally),
                 onClick = {}
             )
         }
     }
 }
 
-@Composable
-fun ContactImage(name: String) {
-    Stack {
-        Box(
-            backgroundColor = Color.Gray,
-            modifier = Modifier.size(48.dp),
-            shape = CircleShape
-        )
-
-        Text(
-            text = name.first().toString(),
-            color = Color.Black,
-            style = TextStyle(
-                fontWeight = FontWeight.SemiBold,
-                fontSize = 24.sp
-            ),
-            modifier = Modifier.gravity(Alignment.Center)
-        )
-    }
-}
+//@Composable
+//fun ContactImage(name: String) {
+//    Stack {
+//        Box(
+//            modifier = Modifier.size(48.dp)
+//                .background(Color.Gray),
+//            shape = CircleShape
+//        )
+//
+//        Text(
+//            text = name.first().toString(),
+//            color = Color.Black,
+//            style = TextStyle(
+//                fontWeight = FontWeight.SemiBold,
+//                fontSize = 24.sp
+//            ),
+//            modifier = Modifier.gravity(Alignment.Center)
+//        )
+//    }
+//}
