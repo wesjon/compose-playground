@@ -43,7 +43,7 @@ fun GmailScreen() {
 @Composable
 fun EmailItem(email: Email) {
     Row(Modifier.padding(16.dp)) {
-//        ContactImage(email.name)
+        ContactImage(email.name)
 
         Column(
             Modifier
@@ -72,23 +72,26 @@ fun EmailItem(email: Email) {
     }
 }
 
-//@Composable
-//fun ContactImage(name: String) {
-//    Stack {
-//        Box(
-//            modifier = Modifier.size(48.dp)
-//                .background(Color.Gray),
-//            shape = CircleShape
-//        )
-//
-//        Text(
-//            text = name.first().toString(),
-//            color = Color.Black,
-//            style = TextStyle(
-//                fontWeight = FontWeight.SemiBold,
-//                fontSize = 24.sp
-//            ),
-//            modifier = Modifier.gravity(Alignment.Center)
-//        )
-//    }
-//}
+@Composable
+fun ContactImage(name: String) {
+    Box {
+        Spacer(
+            modifier = Modifier
+                .size(48.dp)
+                .background(
+                    Color.Gray,
+                    shape = CircleShape
+                ),
+        )
+
+        Text(
+            text = name.first().toString(),
+            color = Color.Black,
+            style = TextStyle(
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 24.sp
+            ),
+            modifier = Modifier.align(Alignment.Center)
+        )
+    }
+}

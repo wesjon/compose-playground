@@ -1,7 +1,11 @@
 package br.com.wesjon.compose_view.screen
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -16,38 +20,43 @@ private val coolColors = listOf(
 
 @Composable
 fun ScrollableListScreen() {
-    LazyColumnFor(items = (0..20).toList(),
-        modifier = Modifier.padding(horizontal = 16.dp),
-        itemContent = { index ->
-            // Here is the equivalent to "onCreateViewHolder", build your listItem here
+    LazyColumn(modifier = Modifier.padding(horizontal = 16.dp)) {
+        items(items = (0..20).toList(),
+            itemContent = { index ->
+                // Here is the equivalent to "onCreateViewHolder", build your listItem here
 
-            if (index == 0) {
+                if (index == 0) {
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
+
+                // The equivalent of multiple ViewTypes can be expressed as conditions here
+                if (index.isOdd()) {
+                    ListItemTypeA()
+                } else {
+                    ListItemTypeB()
+                }
+
                 Spacer(modifier = Modifier.height(8.dp))
-            }
-
-            // The equivalent of multiple ViewTypes can be expressed as conditions here
-//            if (index.isOdd()) {
-//                ListItemTypeA()
-//            } else {
-//                ListItemTypeB()
-//            }
-
-            Spacer(modifier = Modifier.height(8.dp))
-        })
+            })
+    }
 }
 
-//@Composable
-//fun ListItemTypeA() {
-//    Box(
-//        modifier = Modifier.fillMaxWidth() + Modifier.height(boxSize),
-//        backgroundColor = coolColors.random()
-//    )
-//}
-//
-//@Composable
-//fun ListItemTypeB() {
-//    Box(
-//        modifier = Modifier.fillMaxWidth() + Modifier.height(boxSize * 2),
-//        backgroundColor = coolColors.random()
-//    )
-//}
+@Composable
+fun ListItemTypeA() {
+    Spacer(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(boxSize)
+            .background(coolColors.random())
+    )
+}
+
+@Composable
+fun ListItemTypeB() {
+    Spacer(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(boxSize * 2)
+            .background(coolColors.random())
+    )
+}
