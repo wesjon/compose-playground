@@ -4,7 +4,7 @@ import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
@@ -16,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -33,10 +32,11 @@ val emails = listOf(
 )
 
 @Composable
-@Preview
 fun GmailScreen() {
-    LazyColumnFor(items = emails + emails + emails) {
-        EmailItem(it)
+    LazyColumn {
+        items(items = emails + emails + emails, itemContent = {
+            EmailItem(it)
+        })
     }
 }
 

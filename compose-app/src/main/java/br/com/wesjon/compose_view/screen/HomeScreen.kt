@@ -1,5 +1,9 @@
 package br.com.wesjon.compose_view.screen
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,9 +14,32 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.unit.dp
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import br.com.wesjon.compose_view.ScaffoldScreen
 import br.com.wesjon.compose_view.model.Example
 import br.com.wesjon.compose_view.model.examplesList
+
+class HomeScreenFragment : Fragment() {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return ComposeView(requireContext()).apply {
+            setContent {
+                ScaffoldScreen(title = "Home app") {
+                    HomeScreen {
+                        val action = HomeScreenFragmentDirections.actionGoToExampleDetail(it.route)
+                        findNavController().navigate(action)
+                    }
+                }
+            }
+        }
+    }
+}
 
 @Composable
 fun HomeScreen(onExampleClicked: (Example) -> Unit) {

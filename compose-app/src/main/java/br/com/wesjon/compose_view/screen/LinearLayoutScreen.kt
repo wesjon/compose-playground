@@ -1,15 +1,22 @@
 package br.com.wesjon.compose_view.screen
 
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.fragment.app.Fragment
 import br.com.wesjon.compose_view.view.ExampleWithTitle
 
 private val boxSize = 40.dp
@@ -78,20 +85,23 @@ fun HorizontalExample() {
 @Composable
 fun WeighedViewsExample() {
     Row(modifier = Modifier.fillMaxWidth()) {
-        WeightedBox(Color.Cyan, weight = 1)
-        WeightedBox(Color.LightGray, weight = 2)
-        WeightedBox(Color.Cyan, weight = 1)
+        WeightedBox(Color.Cyan, weight = 1, this)
+        WeightedBox(Color.LightGray, weight = 2, this)
+        WeightedBox(Color.Cyan, weight = 1, this)
     }
 }
 
 @Composable
-fun WeightedBox(color: Color, weight: Int) {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .height(boxSize)
-            .background(color),
-    ) {
-        Text("Weight: $weight")
+fun WeightedBox(color: Color, weight: Int, rowScope: RowScope) {
+    rowScope.apply {
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .height(boxSize)
+                .background(color)
+                .weight(weight.toFloat()),
+        ) {
+            Text("Weight: $weight")
+        }
     }
 }

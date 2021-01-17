@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/compose_navigation_graph"
+    app:startDestination="@id/composeAppFragment">
+
+    <fragment
+        android:id="@+id/composeAppFragment"
+        android:name="br.com.wesjon.compose_view.screen.HomeScreenFragment"
+        android:label="ComposeAppFragment">
+        <action
+            android:id="@+id/action_goToExampleDetail"
+            app:destination="@id/composeDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/composeDetail"
+        android:name="br.com.wesjon.compose_view.ComposeDetailFragment"
+        android:label="ComposeDetail">
+        <argument
+            android:name="composableRoute"
+            app:argType="br.com.wesjon.compose_view.Routing" />
+    </fragment>
+
+</navigation>
