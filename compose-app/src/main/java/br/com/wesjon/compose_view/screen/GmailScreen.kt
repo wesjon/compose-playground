@@ -1,12 +1,12 @@
 package br.com.wesjon.compose_view.screen
 
 import androidx.compose.foundation.Icon
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.IconButton
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Star
@@ -34,8 +34,8 @@ val emails = listOf(
 @Composable
 fun GmailScreen() {
     LazyColumn {
-        items(items = emails + emails + emails, itemContent = {
-            EmailItem(it)
+        items(count = 3, itemContent = {
+            EmailItem(emails[it])
         })
     }
 }

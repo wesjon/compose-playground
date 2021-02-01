@@ -53,9 +53,9 @@ fun HomeScreen(onExampleClicked: (Example) -> Unit) {
 @Composable
 fun ExamplesList(onExampleClicked: (Example) -> Unit) {
     LazyColumn(modifier = Modifier.padding(0.dp, 16.dp, 0.dp, 0.dp)) {
-        items(items = examplesList,
+        items(count = examplesList.size,
             itemContent = {
-                ExampleListItem(it, onExampleClicked)
+                ExampleListItem(examplesList[it], onExampleClicked)
             })
     }
 }

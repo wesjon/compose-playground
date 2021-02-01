@@ -21,7 +21,7 @@ private val coolColors = listOf(
 @Composable
 fun ScrollableListScreen() {
     LazyColumn(modifier = Modifier.padding(horizontal = 16.dp)) {
-        items(items = (0..20).toList(),
+        items(count = 20,
             itemContent = { index ->
                 // Here is the equivalent to "onCreateViewHolder", build your listItem here
 
