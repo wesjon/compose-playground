@@ -1,17 +1,15 @@
 package br.com.wesjon.compose_view.screen
 
 
-import androidx.compose.foundation.Box
-import androidx.compose.foundation.ContentGravity
-import androidx.compose.foundation.Text
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.ColumnScope.weight
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
 import br.com.wesjon.compose_view.view.ExampleWithTitle
 
 private val boxSize = 40.dp
@@ -29,21 +27,26 @@ fun LinearLayoutScreen() {
 @Composable
 fun VerticalExample() {
     Column(
-        horizontalGravity = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box(
-            backgroundColor = Color.Cyan,
-            modifier = Modifier.size(boxSize)
+        Spacer(
+            modifier = Modifier
+                .size(boxSize)
+                .background(Color.Cyan)
         )
 
         Box(
-            backgroundColor = Color.Blue,
-            modifier = Modifier.fillMaxWidth() + Modifier.height(boxSize)
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(boxSize)
+                .background(Color.Blue)
         )
 
         Box(
-            backgroundColor = Color.Cyan,
-            modifier = Modifier.gravity(Alignment.End) + Modifier.size(boxSize)
+            modifier = Modifier
+                .align(Alignment.End)
+                .size(boxSize)
+                .background(Color.Cyan)
         )
     }
 }
@@ -51,19 +54,22 @@ fun VerticalExample() {
 @Composable
 fun HorizontalExample() {
     Row {
-        Box(
-            backgroundColor = Color.Cyan,
-            modifier = Modifier.size(boxSize)
+        Spacer(
+            modifier = Modifier
+                .size(boxSize)
+                .background(Color.Cyan)
         )
 
-        Box(
-            backgroundColor = Color.Blue,
-            modifier = Modifier.size(boxSize)
+        Spacer(
+            modifier = Modifier
+                .size(boxSize)
+                .background(Color.Blue)
         )
 
-        Box(
-            backgroundColor = Color.Cyan,
-            modifier = Modifier.size(boxSize)
+        Spacer(
+            modifier = Modifier
+                .size(boxSize)
+                .background(Color.Cyan)
         )
     }
 }
@@ -72,19 +78,23 @@ fun HorizontalExample() {
 @Composable
 fun WeighedViewsExample() {
     Row(modifier = Modifier.fillMaxWidth()) {
-        WeightedBox(Color.Cyan, weight = 1)
-        WeightedBox(Color.LightGray, weight = 2)
-        WeightedBox(Color.Cyan, weight = 1)
+        WeightedBox(Color.Cyan, weight = 1, this)
+        WeightedBox(Color.LightGray, weight = 2, this)
+        WeightedBox(Color.Cyan, weight = 1, this)
     }
 }
 
 @Composable
-fun WeightedBox(color: Color, weight: Int) {
-    Box(
-        backgroundColor = color,
-        gravity = ContentGravity.Center,
-        modifier = Modifier.weight(weight = weight.toFloat()) + Modifier.height(boxSize)
-    ) {
-        Text("Weight: $weight")
+fun WeightedBox(color: Color, weight: Int, rowScope: RowScope) {
+    rowScope.apply {
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .height(boxSize)
+                .background(color)
+                .weight(weight.toFloat()),
+        ) {
+            Text("Weight: $weight")
+        }
     }
 }

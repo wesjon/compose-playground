@@ -1,22 +1,51 @@
 package br.com.wesjon.compose_view.screen
 
-import androidx.compose.foundation.Box
-import androidx.compose.foundation.Text
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import br.com.wesjon.compose_view.ScaffoldScreen
 import br.com.wesjon.compose_view.model.Example
-import br.com.wesjon.compose_view.model.examplesList
 
+class HomeScreenFragment : Fragment() {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return ComposeView(requireContext()).apply {
+            setContent {
+                ScaffoldScreen(title = "Home app") {
+                    HomeScreen {
+                        val action = HomeScreenFragmentDirections.actionGoToExampleDetail(it)
+                        findNavController().navigate(action)
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Preview
 @Composable
 fun HomeScreen(onExampleClicked: (Example) -> Unit) {
     MaterialTheme {
-        Box(backgroundColor = MaterialTheme.colors.background) {
+        Box(Modifier.background(MaterialTheme.colors.background)) {
             ExamplesList(onExampleClicked)
         }
     }
@@ -24,11 +53,12 @@ fun HomeScreen(onExampleClicked: (Example) -> Unit) {
 
 @Composable
 fun ExamplesList(onExampleClicked: (Example) -> Unit) {
-    LazyColumnFor(items = examplesList,
-        modifier = Modifier.padding(0.dp, 16.dp, 0.dp, 0.dp),
-        itemContent = {
-            ExampleListItem(it, onExampleClicked)
-        })
+    LazyColumn(modifier = Modifier.padding(0.dp, 16.dp, 0.dp, 0.dp)) {
+        items(count = Example.values().size,
+            itemContent = {
+                ExampleListItem(Example.values()[it], onExampleClicked)
+            })
+    }
 }
 
 @Composable
@@ -39,9 +69,11 @@ fun ExampleListItem(
     Button(
         onClick = { onExampleClicked.invoke(example) },
         shape = MaterialTheme.shapes.medium,
-        modifier = Modifier.fillMaxSize() + Modifier.padding(16.dp, 0.dp, 8.dp, 16.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp, 0.dp, 8.dp, 16.dp),
         enabled = example.isImplemented
     ) {
-        Text(text = example.name)
+        Text(text = example.title)
     }
 }

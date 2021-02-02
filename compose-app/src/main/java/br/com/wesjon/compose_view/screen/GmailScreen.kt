@@ -1,12 +1,12 @@
 package br.com.wesjon.compose_view.screen
 
-import androidx.compose.foundation.Box
 import androidx.compose.foundation.Icon
-import androidx.compose.foundation.Text
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.IconButton
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Star
@@ -18,7 +18,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.ui.tooling.preview.Preview
 
 data class Email(
     val name: String,
@@ -33,10 +32,11 @@ val emails = listOf(
 )
 
 @Composable
-@Preview
 fun GmailScreen() {
-    LazyColumnFor(items = emails + emails + emails) {
-        EmailItem(it)
+    LazyColumn {
+        items(count = 6, itemContent = {
+            EmailItem(emails[it % 2])
+        })
     }
 }
 
@@ -64,8 +64,8 @@ fun EmailItem(email: Email) {
             }
 
             IconButton(
-                icon = { Icon(icon) },
-                modifier = Modifier.gravity(Alignment.CenterHorizontally),
+                content = { Icon(icon) },
+                modifier = Modifier.align(Alignment.CenterHorizontally),
                 onClick = {}
             )
         }
@@ -74,11 +74,14 @@ fun EmailItem(email: Email) {
 
 @Composable
 fun ContactImage(name: String) {
-    Stack {
-        Box(
-            backgroundColor = Color.Gray,
-            modifier = Modifier.size(48.dp),
-            shape = CircleShape
+    Box {
+        Spacer(
+            modifier = Modifier
+                .size(48.dp)
+                .background(
+                    Color.Gray,
+                    shape = CircleShape
+                ),
         )
 
         Text(
@@ -88,7 +91,7 @@ fun ContactImage(name: String) {
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 24.sp
             ),
-            modifier = Modifier.gravity(Alignment.Center)
+            modifier = Modifier.align(Alignment.Center)
         )
     }
 }
