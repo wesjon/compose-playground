@@ -17,8 +17,8 @@
         android:name="br.com.wesjon.compose_view.ComposeDetailFragment"
         android:label="ComposeDetail">
         <argument
-            android:name="composableRoute"
-            app:argType="br.com.wesjon.compose_view.Routing" />
+            android:name="example"
+            app:argType="br.com.wesjon.compose_view.model.Example" />
     </fragment>
 
 </navigation>

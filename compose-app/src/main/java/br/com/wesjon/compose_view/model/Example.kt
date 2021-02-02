@@ -1,16 +1,15 @@
 package br.com.wesjon.compose_view.model
 
-import br.com.wesjon.compose_view.*
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
-data class Example(
-    val name: String,
-    val route: Routing = HomeScreen,
-    val isImplemented: Boolean = false
-)
-
-val examplesList = listOf(
-    Example("LinearLayout like layouts", ExampleLinearLayoutLike, true),
-    Example("Scrollable lists", ExampleScrollableLists, true),
-    Example("Gmail like list", GmailLikeLayout, true),
-    Example("Nubank UI", NuBankUI, false)
-)
+@Parcelize
+enum class Example(
+    val title: String,
+    val isImplemented: Boolean = true
+): Parcelable{
+    LINEAR_LAYOUT("LinearLayout like layouts", true),
+    SCROLLABLE_LISTS("Scrollable lists", true),
+    GMAIL("Gmail like list", true),
+    NUBANK("Nubank UI", false)
+}

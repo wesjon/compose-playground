@@ -15,24 +15,24 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import br.com.wesjon.compose_view.ScaffoldScreen
 import br.com.wesjon.compose_view.model.Example
-import br.com.wesjon.compose_view.model.examplesList
 
 class HomeScreenFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return ComposeView(requireContext()).apply {
             setContent {
                 ScaffoldScreen(title = "Home app") {
                     HomeScreen {
-                        val action = HomeScreenFragmentDirections.actionGoToExampleDetail(it.route)
+                        val action = HomeScreenFragmentDirections.actionGoToExampleDetail(it)
                         findNavController().navigate(action)
                     }
                 }
@@ -41,6 +41,7 @@ class HomeScreenFragment : Fragment() {
     }
 }
 
+@Preview
 @Composable
 fun HomeScreen(onExampleClicked: (Example) -> Unit) {
     MaterialTheme {
@@ -53,9 +54,9 @@ fun HomeScreen(onExampleClicked: (Example) -> Unit) {
 @Composable
 fun ExamplesList(onExampleClicked: (Example) -> Unit) {
     LazyColumn(modifier = Modifier.padding(0.dp, 16.dp, 0.dp, 0.dp)) {
-        items(count = examplesList.size,
+        items(count = Example.values().size,
             itemContent = {
-                ExampleListItem(examplesList[it], onExampleClicked)
+                ExampleListItem(Example.values()[it], onExampleClicked)
             })
     }
 }
@@ -73,6 +74,6 @@ fun ExampleListItem(
             .padding(16.dp, 0.dp, 8.dp, 16.dp),
         enabled = example.isImplemented
     ) {
-        Text(text = example.name)
+        Text(text = example.title)
     }
 }
