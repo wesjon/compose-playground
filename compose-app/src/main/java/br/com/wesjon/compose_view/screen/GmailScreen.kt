@@ -34,8 +34,8 @@ val emails = listOf(
 @Composable
 fun GmailScreen() {
     LazyColumn {
-        items(count = 3, itemContent = {
-            EmailItem(emails[it])
+        items(count = 6, itemContent = {
+            EmailItem(emails[it % 2])
         })
     }
 }
