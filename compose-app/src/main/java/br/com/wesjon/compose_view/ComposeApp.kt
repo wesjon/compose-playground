@@ -22,6 +22,6 @@ fun ScaffoldScreen(
                 title = { Text(title) }
             )
         },
-        bodyContent = { MaterialTheme(content = bodyContent) }
+        content = { MaterialTheme(content = bodyContent) }
     )
 }

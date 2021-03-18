@@ -1,10 +1,10 @@
 package br.com.wesjon.compose_view.screen
 
-import androidx.compose.foundation.Icon
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -64,7 +64,7 @@ fun EmailItem(email: Email) {
             }
 
             IconButton(
-                content = { Icon(icon) },
+                content = { Icon(icon, "") },
                 modifier = Modifier.align(Alignment.CenterHorizontally),
                 onClick = {}
             )
