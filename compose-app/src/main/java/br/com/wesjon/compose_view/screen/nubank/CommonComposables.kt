@@ -4,10 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.Money
@@ -22,17 +19,39 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-val NubankPrimaryColor = Color(0xFF810AD1)
-val NubankSecondaryColor = Color(0xFF707070)
-val NubankBlueColor = Color(0xFF25A1DE)
-val NubankSecondaryTextColor = Color(0xFF1A1A1A)
-val NubankBigValueStrongColor = Color(0xFF191919)
+private val NubankPurple = Color(0xFF810AD1)
+private val NubankSecondaryColor = Color(0xFF707070)
+private val NubankBlueColor = Color(0xFF25A1DE)
+private val NubankSecondaryTextColor = Color(0xFF1A1A1A)
+private val NubankBigValueStrongColor = Color(0xFF191919)
+
+val Colors.blue
+    get() = NubankBlueColor
+
+val Colors.strongText
+get() = NubankBigValueStrongColor
+
+val nubankColors = lightColors(
+    primary = NubankPurple,
+    surface = Color.White,
+    onSurface = NubankSecondaryColor,
+    onSecondary = NubankSecondaryTextColor
+)
 
 val BigValueTextStyle = TextStyle(
     fontWeight = FontWeight.Bold,
     fontSize = 28.sp,
     letterSpacing = 0.sp,
 )
+
+@Composable
+fun NubankTheme(content: @Composable () -> Unit) {
+    MaterialTheme(
+        colors = nubankColors
+    ) {
+        content()
+    }
+}
 
 @Composable
 fun NuCard(

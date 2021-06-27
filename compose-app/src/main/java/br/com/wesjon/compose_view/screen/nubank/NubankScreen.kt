@@ -1,9 +1,9 @@
-package br.com.wesjon.compose_view.screen
+package br.com.wesjon.compose_view.screen.nubank
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.*
@@ -21,24 +21,24 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.wesjon.compose_view.screen.nubank.*
 
 @Preview(
     showBackground = true,
     device = Devices.PIXEL_2
 )
 @Composable
-fun NubankScreen() {
+fun NubankScreen(uiModel: NubankUiModel = clientOne) {
     val valuesVisible = remember { mutableStateOf(true) }
 
-    Surface(
-        color = NubankPrimaryColor,
-    ) {
+    NubankTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            modifier = Modifier.padding(vertical = 16.dp)
+            modifier = Modifier
+                .background(MaterialTheme.colors.primary)
+                .padding(vertical = 16.dp)
         ) {
             TopItems(
+                clientName = uiModel.clientName,
                 valuesVisible = valuesVisible.value,
                 onToggleVisibility = {
                     valuesVisible.value = !valuesVisible.value
@@ -47,22 +47,24 @@ fun NubankScreen() {
             )
 
             CardSections(
+                uiModel = uiModel,
                 valuesVisible = valuesVisible.value,
                 modifier = Modifier
                     .weight(1f)
                     .padding(horizontal = 16.dp)
             )
 
-            BottomCards()
+            BottomCards(uiModel)
         }
     }
 }
 
 @Composable
 fun TopItems(
-    valuesVisible: Boolean,
+    clientName: String,
     onToggleVisibility: () -> Unit,
-    modifier: Modifier
+    modifier: Modifier,
+    valuesVisible: Boolean
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -70,7 +72,7 @@ fun TopItems(
         modifier = modifier
     ) {
         Text(
-            text = "Olá, Wesley",
+            text = "Olá, $clientName",
             modifier = Modifier.weight(1f),
             color = Color.White,
             style = MaterialTheme.typography.h4
@@ -87,41 +89,41 @@ fun TopItems(
 }
 
 @Composable
-fun CardSections(valuesVisible: Boolean, modifier: Modifier) {
+fun CardSections(uiModel: NubankUiModel, modifier: Modifier, valuesVisible: Boolean) {
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier
     ) {
-        CreditCardCard(valuesVisible)
-        NuConta()
+        CreditCardCard(uiModel, valuesVisible)
+        NuConta(uiModel.checkingBalance, valuesVisible)
     }
 }
 
 @Composable
-fun CreditCardCard(valuesVisible: Boolean) {
+fun CreditCardCard(uiModel: NubankUiModel, valuesVisible: Boolean) {
     NuCard(Icons.Outlined.CardGiftcard, "Cartão de crédito") {
         Text(
             text = "Fatura atual",
             style = MaterialTheme.typography.subtitle2,
-            color = NubankSecondaryColor,
+            color = MaterialTheme.colors.onSurface,
         )
 
         val creditCardValues = if (valuesVisible) {
-            "R$ 1.000,00"
+            uiModel.currentInvoiceValue
         } else {
             "-"
         }
         Text(
             text = creditCardValues,
             style = BigValueTextStyle,
-            color = NubankBlueColor
+            color = MaterialTheme.colors.blue
         )
 
         Row {
             Text(text = buildAnnotatedString {
                 withStyle(
                     style = SpanStyle(
-                        color = NubankSecondaryTextColor,
+                        color = MaterialTheme.colors.onSecondary,
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Light
                     )
@@ -136,7 +138,11 @@ fun CreditCardCard(valuesVisible: Boolean) {
                         fontWeight = FontWeight.Medium
                     )
                 ) {
-                    append("R$ 150,00")
+                    if (valuesVisible) {
+                        append(uiModel.remainingLimitValue)
+                    } else {
+                        append("-")
+                    }
                 }
             })
         }
@@ -144,41 +150,36 @@ fun CreditCardCard(valuesVisible: Boolean) {
 }
 
 @Composable
-fun NuConta() {
+fun NuConta(balance: String, valuesVisible: Boolean) {
     NuCard(icon = Icons.Outlined.MonetizationOn, title = "Conta") {
         Text(
             text = "Saldo disponível",
             style = MaterialTheme.typography.subtitle2,
-            color = NubankSecondaryColor,
+            color = MaterialTheme.colors.onSurface,
         )
+        val displayText = if (valuesVisible) {
+            balance
+        } else {
+            "-"
+        }
+
         Text(
-            "R$ 500,00",
+            displayText,
             style = BigValueTextStyle,
-            color = NubankBigValueStrongColor
+            color = MaterialTheme.colors.strongText
         )
     }
 }
 
 @Composable
-fun BottomCards() {
-    val bottomItems = listOf(
-        Icons.Outlined.Payment to "Pix",
-        Icons.Outlined.Money to "Pagar",
-        Icons.Outlined.Contacts to "Indicar amigo",
-        Icons.Outlined.TransferWithinAStation to "Transferir",
-        Icons.Outlined.Adjust to "Ajustar limite",
-        Icons.Outlined.Payment to "Pix",
-        Icons.Outlined.TransferWithinAStation to "Transferir",
-        Icons.Outlined.Adjust to "Ajustar limite",
-    )
-
+fun BottomCards(uiModel: NubankUiModel) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         contentPadding = PaddingValues(horizontal = 16.dp)
     ) {
-        items(count = bottomItems.size) { index ->
-            val (icon, title) = bottomItems[index]
-            BottomCard(icon = icon, title = title)
+        items(count = uiModel.bottomBarOptions.size) { index ->
+            val (icon, title) = uiModel.bottomBarOptions[index]
+            BottomCard(icon = icon.icon, title = title.title)
         }
     }
 }
