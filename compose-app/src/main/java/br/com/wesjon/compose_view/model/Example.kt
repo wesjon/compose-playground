@@ -11,5 +11,5 @@ enum class Example(
     LINEAR_LAYOUT("LinearLayout like layouts", true),
     SCROLLABLE_LISTS("Scrollable lists", true),
     GMAIL("Gmail like list", true),
-    NUBANK("Nubank UI", false)
+    NUBANK("Nubank UI", true)
 }
