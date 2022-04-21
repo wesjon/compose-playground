@@ -1,6 +1,6 @@
 package br.com.wesjon.composeplayground
 
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
 
-class MainActivity : AppCompatActivity(R.layout.activity_main)
+class MainActivity : FragmentActivity(R.layout.activity_main)
 
