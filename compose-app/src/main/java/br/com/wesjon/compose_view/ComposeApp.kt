@@ -14,13 +14,16 @@ fun ComposeApp() {
 @Composable
 fun ScaffoldScreen(
     title: String,
+    showToolbar: Boolean = true,
     bodyContent: @Composable () -> Unit
 ) {
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text(title) }
-            )
+            if (showToolbar) {
+                TopAppBar(
+                    title = { Text(title) }
+                )
+            }
         },
         content = { MaterialTheme(content = bodyContent) }
     )
